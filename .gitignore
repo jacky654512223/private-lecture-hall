@@ -1,0 +1,13 @@
+data/
+dist/
+node_modules/
+.env
+*.pem
+*.key
+*.sqlite*
+.env.*
+!.env.example
+!deploy/native.env.example
+.DS_Store
+*.zip
+*.tar.gz

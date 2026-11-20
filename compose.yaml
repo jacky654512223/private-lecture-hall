@@ -1,0 +1,28 @@
+services:
+  hall:
+    build: .
+    restart: unless-stopped
+    environment:
+      PUBLIC_ORIGIN: https://${HALL_DOMAIN:?Set HALL_DOMAIN in .env}
+      DATA_DIR: /data
+      MAX_UPLOAD_GB: 1
+    volumes:
+      - hall-data:/data
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      HALL_DOMAIN: ${HALL_DOMAIN:?Set HALL_DOMAIN in .env}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - hall
+volumes:
+  hall-data:
+  caddy-data:
+  caddy-config:

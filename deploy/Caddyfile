@@ -1,0 +1,8 @@
+{$HALL_DOMAIN} {
+ encode gzip
+ header X-Content-Type-Options nosniff
+ request_body {
+  max_size 201MB
+ }
+ reverse_proxy hall:8787
+}

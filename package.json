@@ -1,0 +1,1 @@
+{"name":"private-lecture-hall-workbuddy","version":"0.3.0","private":true,"type":"module","engines":{"node":">=24"},"scripts":{"build":"node worker/build.mjs","start":"node server/start.mjs","test":"node tests/cloud.mjs && node tests/media.mjs"}}

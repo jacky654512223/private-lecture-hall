@@ -1,0 +1,22 @@
+[Unit]
+Description=Private Lecture Hall
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=lecturehall
+WorkingDirectory=/srv/lecture-hall
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/lecture-hall.env
+ExecStart=/usr/bin/node /srv/lecture-hall/server/start.mjs
+Restart=on-failure
+StateDirectory=lecture-hall
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/lecture-hall
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
